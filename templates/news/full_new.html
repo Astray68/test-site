@@ -1,0 +1,20 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}News | {{content.title}} {% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static "css/news/news.css" %}">
+{% endblock %}
+
+{% block content %}
+<div class="templatemo_servicewrapper" id="templatemo_service_page">
+    <div class="container">
+        <div class="row">
+            <h1>{{content.title}}</h1>
+            <div class="templatemo_service_title">{{content.date_posted}}</div>
+            <div class="col-md-12 templatemo_marginbot"><img src="{{ content.image.url }}"/>{{content.short_content}}</div>
+        </div>
+    </div>
+</div>
+{% endblock %}

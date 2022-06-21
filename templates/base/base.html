@@ -1,0 +1,100 @@
+{# Base template, with a few basic style definitions. #}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>DevSite | {% block title %}Website{% endblock %}</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700,800' rel='stylesheet' type='text/css'>
+    <!-- Style Sheets -->
+    <link rel="stylesheet" href="{% static "css/base/animate.css" %}">
+    <link rel="stylesheet" href="{% static "css/base/bootstrap.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/base/templatemo_misc.css" %}">
+    <link rel="stylesheet" href="{% static "css/base/templatemo_style.css" %}">
+    <link rel="stylesheet" href="{% static "css/base/styles.css" %}">
+    <!-- JavaScripts -->
+    <script src="{% static "js/jquery-1.11.1.min.js" %}"></script>
+    <script src="{% static "js/bootstrap-dropdown.js" %}"></script>
+    <script src="{% static "js/bootstrap-collapse.js" %}"></script>
+    <script src="{% static "js/bootstrap-tab.js" %}"></script>
+    <script src="{% static "js/jquery.singlePageNav.js" %}"></script>
+    <script src="{% static "js/jquery.flexslider.js" %}"></script>
+    <script src="{% static "js/custom.js" %}"></script>
+    <script src="{% static "js/jquery.lightbox.js" %}"></script>
+    <script src="{% static "js/templatemo_custom.js" %}"></script>
+    <script src="{% static "js/responsiveCarousel.min.js" %}"></script>
+
+    {% block head %}{% endblock %}
+
+</head>
+<body>
+<div id="templatemo_home_page">
+    {% block site_navbar %}
+        {% include "base/navbar.html" %}
+    {% endblock %}
+
+    
+    <main>
+        {% block content %}
+            {{ block.super }}
+        {% endblock %}
+    </main>
+
+
+    {% block site_footer %}
+        {% include "base/footer.html" %}
+    {% endblock %}
+
+</div>
+<script>
+
+    // Cache selectors
+    var lastId,
+        topMenu = $("#top-menu"),
+        topMenuHeight = topMenu.outerHeight() + 15,
+        // All list items
+        menuItems = topMenu.find("a"),
+        // Anchors corresponding to menu items
+        scrollItems = menuItems.map(function() {
+            var item = $($(this).attr("href"));
+            if (item.length) {
+                return item;
+            }
+        });
+    // Bind click handler to menu items
+    // so we can get a fancy scroll animation
+    menuItems.click(function(e) {
+        var href = $(this).attr("href"),
+            offsetTop = href === "#" ? 0 : $(href).offset().top - topMenuHeight + 1;
+        $('html, body').stop().animate({
+            scrollTop: offsetTop
+        }, 300);
+        e.preventDefault();
+    });
+    // Bind to scroll
+    $(window).scroll(function() {
+        // Get container scroll position
+        var fromTop = $(this).scrollTop() + topMenuHeight;
+        // Get id of current scroll item
+        var cur = scrollItems.map(function() {
+            if ($(this).offset().top < fromTop)
+                return this;
+        });
+        // Get the id of the current element
+        cur = cur[cur.length - 1];
+        var id = cur && cur.length ? cur[0].id : "";
+        if (lastId !== id) {
+            lastId = id;
+            // Set/remove active class
+            menuItems
+                .parent().removeClass("active")
+                .end().filter("[href=#" + id + "]").parent().addClass("active");
+        }
+    });
+    </script>
+</body>
+</html>
