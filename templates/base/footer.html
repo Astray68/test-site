@@ -1,30 +1,29 @@
 {% load static %}
 <!-- footer start -->
 
-<div class="row">
+
     <div class="templatemo_footerwrapper">
-        <nav class="navbar navbar-default templatemo_menu" role="navigation">
-            <div class="container-fluid">
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div id="top-menu">
-                <ul class="nav navbar-nav">
-                    <li><a class="menu" href="">Home</a></li>
-                    <li><a class="menu" href="">Services</a></li>
-                    <li><a class="menu" href="news/">News</a></li>
-                    <li><a class="menu" href="">Reviews</a></li>
-                    <li><a class="menu" href="">Contact</a></li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse --> 
-            </div>
-            <!-- /.container-fluid --> 
-        </nav>
         <div class="container">
-        <div class="row">
-            <div class="col-md-12">Copyright &copy; 2022 DevSite
+            <div class="row">
+                <nav class="navbar navbar-default templatemo_menu" role="navigation">
+                    <div class="container-fluid">
+                    <div id="top-menu">
+                        <ul class="nav navbar-nav" style="width: 100%;">
+                            {% for item in footer_items %}
+                            <li><a class="menu" href="{{item.url}}">{{item.title}}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    </div>
+                </nav>
             </div>
         </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">Copyright &copy; 2022 DevSite
+                </div>
+            </div>
         </div>
     </div>
-</div>
+
   <!-- footer end --> 

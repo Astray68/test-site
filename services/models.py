@@ -23,7 +23,7 @@ class Category(models.Model):
 
 class Product(models.Model):
     name = models.CharField('Name_product', max_length=100)
-    category = models.ForeignKey(Category, verbose_name='Category', on_delete=models.SET_NULL, null=True)
+    category = models.ForeignKey(Category, verbose_name='Category', on_delete=models.PROTECT)
     image = models.ImageField('Image', upload_to='product/')
     slug = models.SlugField('URL', max_length=160, unique=True, null=True, db_index=True)
     content = models.TextField('Content', max_length=1000)
@@ -38,3 +38,20 @@ class Product(models.Model):
     class Meta:
         verbose_name_plural = 'Products'
         verbose_name = 'Product'
+
+
+class Promotion(models.Model):
+    title = models.CharField('Title', max_length=20)
+    slug = models.SlugField('URL', max_length=160, unique=True, null=True, db_index=True)
+    content = models.TextField('Content', blank=True)
+    is_deleted = models.BooleanField('Is_deleted', default=False)
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('promotion_info', kwargs={'promotion_slug': self.slug})
+
+    class Meta:
+        verbose_name = 'Promotion'
+        verbose_name_plural = 'Promotions'

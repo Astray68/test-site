@@ -5,7 +5,8 @@ from django.urls import reverse
 
 class New(models.Model):
     title = models.CharField('Title new', max_length=100)
-    short_content = models.TextField('Content', max_length=20)
+    short_content = models.TextField('Short content', max_length=20)
+    full_content = models.TextField('Full content', max_length=10000)
     date_posted = models.DateTimeField('Date posting')
     image = models.ImageField('Image', upload_to='new/')
     slug = models.SlugField('URL', max_length=160, unique=True, null=True, db_index=True)

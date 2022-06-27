@@ -24,6 +24,10 @@ SECRET_KEY = 'django-insecure-$@t&&evp!&0yem1gvu6d1g53&ss5(a!6=+^ab%j%_fbn5v$wxn
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+
+LOGIN_REDIRECT_URL = '/'
+
+
 ALLOWED_HOSTS = ['127.0.0.1']
 
 
@@ -41,6 +45,7 @@ INSTALLED_APPS = [
     'reviews',
     'services',
     'menu',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -66,7 +71,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django.template.context_processors.request',
+                'menu.context_menu.menu_items',
             ],
         },
     },
@@ -111,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'ru'
+LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 

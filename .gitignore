@@ -1,7 +1,7 @@
 .venv
 venv/
 ENV/
-
+__pychach__
 
 
 .idea/

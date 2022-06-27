@@ -4,7 +4,7 @@ from django.db import models
 
 
 class Review(models.Model):
-    name = models.CharField('Title new', max_length=100)
+    name = models.CharField('Username', max_length=100)
     date_posted = models.DateTimeField('Date posting')
     message = models.TextField('Message', max_length=1000)
     STATUS_CHOICES = [

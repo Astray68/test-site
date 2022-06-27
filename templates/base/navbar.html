@@ -8,7 +8,7 @@
           <div class="templatemo_title"><span>DevSite</span></div>
         </div>
         <div class="clear"></div>
-        <div class="templatemo_titlewrappersmall">DevSite</div>
+        <div class="templatemo_titlewrappersmall" clo>DevSite</div>
         <nav class="navbar navbar-default templatemo_menu" role="navigation">
           <div class="container-fluid"> 
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -19,13 +19,19 @@
             <div id="top-menu">
               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav" style="width: 800px;">
-                  <li><a class="menu" href="">Home</a></li>
-                  <li><a class="menu" href="">Services</a></li>
-                  <li><a class="menu" href="news/">News</a></li>
-                  <li><a class="menu" href="">Reviews</a></li>
-                  <li><a class="menu" href="">Contact</a></li>
-                  <li><a class="menu" href="">Sign In</a></li>
-                  <li><a class="menu" href="">Sign Up</a></li>
+                  {% if user.is_authenticated %}
+                    {% for item in navbar_items %}
+                      {% if item.login_required %}
+                        <li><a class="menu" href="{{item.url}}">{{item.title}}</a></li>
+                      {% endif %}
+                    {% endfor %}
+                  {% else %}
+                    {% for item in navbar_items %}
+                      {% if item.anonymous_only %}
+                        <li><a class="menu" href="{{item.url}}">{{item.title}}</a></li>
+                      {% endif %}
+                    {% endfor %}
+                  {% endif %}
                 </ul>
               </div>
             </div>
