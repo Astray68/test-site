@@ -33,9 +33,12 @@
           <h1>Your review</h1>
           <form method="post">
             {% csrf_token %}
-                <td>{{ form_review.as_p }}</td>
-            
-            <button type="submit">Send</button>
+            {% if form != None %}
+                {{ form.message }}
+                <input type="submit" value="Add review">
+            {% else %}
+                Only for authorized users. <a href="/accounts/login/">Sing In.</a>
+            {% endif %}
             </form>
       </div>
   </div>

@@ -1,7 +1,7 @@
 from django.db import models
 from django.urls import reverse
-# Create your models here.
-
+from mptt.models import MPTTModel, TreeForeignKey
+#TODO: переделать на mptt
 
 class Category(models.Model):
     name = models.CharField('Name_category', max_length=100)

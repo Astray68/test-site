@@ -1,0 +1,41 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}Reviews{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static "css/reviews/reviews.css" %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="templatemo_servicewrapper" id="templatemo_service_page">
+  <div class="container">
+      <div class="row">
+        <div>
+          <h1>Our contact details</h1>
+          <div >Mailing Address:</div>
+          No 123, Duis in enim road, Sed sit amet arcu ut quam porttitor.
+          <div class="clear"></div>
+          <div >Call us:</div>
+          <div >+001 333 000 1010<br>
+            +002 666 000 2020</div>
+          <div class="clear"></div>
+          <div>Hot line:</div>
+          <div>+009 000 999 0000</div>
+          <div class="clear"></div>
+          <div>Email us:</div>
+          <div>admin@company.com<br>
+            info@company.com</div>
+        </div>
+          <h1>Form contact</h1>
+          <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            
+            <input type="submit" value = "Send">
+            </form>
+      </div>
+  </div>
+</div>
+{% endblock %}

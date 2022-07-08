@@ -21,6 +21,35 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-$@t&&evp!&0yem1gvu6d1g53&ss5(a!6=+^ab%j%_fbn5v$wxn'
 
+#Captcha
+CAPTCHA_CHALLENGE_FUNC = 'captcha.helpers.random_char_challenge'
+
+
+#Redis
+
+REDIS_HOST = 'localhost'
+REDIS_PORT = '6379'
+CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+CELERY_BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}
+CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#Gmail
+
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_PORT = 2525
+EMAIL_HOST_USER = '@mail.ru'
+EMAIL_HOST_PASSWORD = 'ihsAyQ3KXOx0mNCjU'
+SERVER_EMAIL = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -40,12 +69,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'captcha',
     'home',
     'news',
     'reviews',
     'services',
     'menu',
     'users',
+    'contacts',
 ]
 
 MIDDLEWARE = [

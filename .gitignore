@@ -3,5 +3,5 @@ venv/
 ENV/
 __pychach__
 
-
+dump.rdb
 .idea/
