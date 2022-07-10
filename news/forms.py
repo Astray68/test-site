@@ -7,7 +7,6 @@ class DateInput(forms.DateInput):
     input_type = 'date'
 
 
-#GET
 class DateForm(forms.Form):
     start_date = forms.DateField(label="Enter a start date")
     end_date = forms.DateField(label="Enter a end date")

@@ -3,6 +3,7 @@ from MyTestWebsite.settings import EMAIL_HOST_USER
 from .forms import ContactsForm
 from django.views.generic.base import View
 from contacts.tasks import send_mail_alert
+from django.http import HttpResponse
 
 
 class ContactsView(View):
@@ -25,4 +26,6 @@ class ContactsView(View):
                            f'Message: {message}'
             recipient_email = ['astrayfr@gmail.com', 'stepanxolera8@gmail.com']
             send_mail_alert.delay('New contact', full_message, EMAIL_HOST_USER, recipient_email)
+            form.save()
+            return HttpResponse('Successfully <a href="/">Home</a>')
         return render(request, 'contacts/contact.html', {'form': form})

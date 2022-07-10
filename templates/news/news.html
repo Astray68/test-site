@@ -13,23 +13,27 @@
         <div class="row">
             <h1>News</h1>
             <div>
-                <p>
-                    <label for="localtime">Start date</label>
-                    <input type="datetime-local" id="start_date" name="start_date"/ value="{{start_date|date:"d/m/Y"}}">
-                </p>
-                <p>
-                    <label for="localtime">End date</label>
-                    <input type="datetime-local" id="end_date" name="end_date"/ value="{{start_date|date:"d/m/Y"}}">
-                </p>
+                <form action='/news' method="GET">
+                    <legend>Select a time period:</legend>
+                    <br>
+                    Start date:
+                    <input id="start_date" type="datetime-local" name="start_date" value="{{start_date|date:'d/m/Y'}}">
+                    <br>
+                    End date:
+                    <input id="end_date" type="datetime-local" name="end_date" value="{{end_date|date:'d/m/Y'}}">
+                    <!-- <input type="submit"> -->
+                    <br>
+                    <button name="buy" type="submit">OK</button>
+                </form>
             </div>
             {% for new in news_list %}
             <div class="col-md-3 col-sm-6">
                 <div class="templatemo_servicebox margin_bottom_1col margin_bottom_2col">
                     <div class="templatemo_serviceicon"><span><img src="{{new.image.url}}"/></span></div>
-                    <div class="templatemo_service_title">{{new.title}}</div>
-                    <div class="templatemo_service_title">{{new.date_posted}}</div>
+                    <div class="templatemo_service_title">{{ new.title }}</div>
+                    <div class="templatemo_service_title">{{ new.date_posted }}</div>
                     <p>
-                        {{new.short_content}}
+                        {{ new.short_content }}
                         <a href="{{new.slug}}">Continue...</a>
                     </p>
                 </div>

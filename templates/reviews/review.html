@@ -15,10 +15,10 @@
             {% for review in review_list %}
             <div class="col-md-3 col-sm-6">
                 <div class="templatemo_servicebox margin_bottom_1col margin_bottom_2col">
-                    <div class="templatemo_service_title">{{review.name}}</div>
-                    <div class="templatemo_service_title">{{review.date_posted}}</div>
+                    <div class="templatemo_service_title">{{ review.name }}</div>
+                    <div class="templatemo_service_title">{{ review.date_posted }}</div>
                     <p>
-                        {{review.message}}
+                        {{ review.message }}
                     </p>
                 </div>
             </div>
@@ -31,14 +31,14 @@
   <div class="container">
       <div class="row">
           <h1>Your review</h1>
-          <form method="post">
-            {% csrf_token %}
-            {% if form != None %}
-                {{ form.message }}
-                <input type="submit" value="Add review">
-            {% else %}
-                Only for authorized users. <a href="/accounts/login/">Sing In.</a>
-            {% endif %}
+            <form method="post">
+                {% csrf_token %}
+                {% if form != None %}
+                    {{ form.message }}
+                    <input type="submit" value="Add review">
+                {% else %}
+                    Only for authorized users. <a href="/accounts/login/">Sing In.</a>
+                {% endif %}
             </form>
       </div>
   </div>

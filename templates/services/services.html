@@ -1,0 +1,51 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}Services{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static "css/services/services.css" %}">
+{% endblock %}
+
+{% block content %}
+<div>
+    <a href="/">Home</a>>
+    <a href="/services/">Services</a>
+</div>
+{% if category_list %}
+<div class="templatemo_servicewrapper" id="templatemo_service_page">
+    <div class="container">
+        <div class="row">
+                <h1>Services</h1>
+                {% for category in category_list %}
+                <div class="col-md-3 col-sm-6">
+                    <div class="templatemo_servicebox margin_bottom_1col margin_bottom_2col">
+                        <div class="templatemo_serviceicon"><span><img src="{{ category.image.url }}"/></span></div>
+                        <div class="templatemo_service_title">{{ category.name }}</div>
+                        <div><a href="/services/category/{{ category.slug }}">Continue...</a></div>
+                    </div>
+                </div>
+                {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+{% if promotion_list %}
+<div class="templatemo_servicewrapper" id="templatemo_service_page">
+    <div class="container">
+        <div class="row">
+                <h1>Promotion</h1>
+                {% for promotion in promotion_list %}
+                <div class="col-md-3 col-sm-6">
+                    <div class="templatemo_servicebox margin_bottom_1col margin_bottom_2col">
+                        <div class="templatemo_service_title">{{ promotion.title }}</div>
+                        <div class="templatemo_service_title">{{ promotion.content }}</div>
+                    </div>
+                </div>
+                {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}

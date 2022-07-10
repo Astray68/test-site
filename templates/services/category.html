@@ -1,0 +1,81 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}Services{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static "css/services/services.css" %}">
+{% endblock %}
+
+{% block content %}
+<div>
+    <a href="/">Home</a>>
+    <a href="/services/">Services</a>
+    {% for item in breadcrumbs %}
+        ><a href="/services/category/{{ item.slug }}">{{ item.name }}</a>
+    {% endfor %}
+
+</div>
+{% if category_list%}
+<div class="templatemo_servicewrapper" id="templatemo_service_page">
+    <div class="container">
+        <div class="row">
+                <h1>Services</h1>
+                {% for category in category_list %}
+                <div class="col-md-3 col-sm-6">
+                    <div class="templatemo_servicebox margin_bottom_1col margin_bottom_2col">
+                        <div class="templatemo_serviceicon"><span><img src="{{ category.image.url }}"/></span></div>
+                        <div class="templatemo_service_title">{{ category.name }}</div>
+                        <div><a href="/services/category/{{ category.slug }}">Continue...</a></div>
+                    </div>
+                </div>
+                {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+{% if product_list %}
+<div class="templatemo_servicewrapper" id="templatemo_service_page">
+    <div class="container">
+        <div class="row">
+                <h1>Product</h1>
+                {% for product in product_list %}
+                <div class="col-md-3 col-sm-6">
+                    <div class="templatemo_servicebox margin_bottom_1col margin_bottom_2col">
+                        <div class="templatemo_serviceicon"><span><img src="{{ product.image.url }}"/></span></div>
+                        <div class="templatemo_service_title">{{ product.name }}</div>
+                        <div class="templatemo_service_title">content: {{ product.content }}</div>
+                        <div class="templatemo_service_title">characteristics: {{ product.characteristics }}</div>
+                        <div class="templatemo_service_title">price: {{ product.price }}</div>
+                        <div class="templatemo_service_title">promotion:
+                            {% for promo in product.promotion.all %}
+                                {% if not promo.is_deleted %}
+                                    {{ promo.title }},
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+{% if promotion_list %}
+<div class="templatemo_servicewrapper" id="templatemo_service_page">
+    <div class="container">
+        <div class="row">
+                <h1>Promotion</h1>
+                {% for promotion in promotion_list %}
+                <div class="col-md-3 col-sm-6">
+                    <div class="templatemo_servicebox margin_bottom_1col margin_bottom_2col">
+                        <div class="templatemo_service_title">{{ promotion.title }}</div>
+                        <div class="templatemo_service_title">{{ promotion.content }}</div>
+                    </div>
+                </div>
+                {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

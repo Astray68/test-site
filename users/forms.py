@@ -15,4 +15,3 @@ class UserRegisterForm(UserCreationForm):
         if User.objects.filter(email=email).exists():
             raise forms.ValidationError('Email addresses must be unique.')
         return email
-

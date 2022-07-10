@@ -22,13 +22,13 @@
                   {% if user.is_authenticated %}
                     {% for item in navbar_items %}
                       {% if item.login_required %}
-                        <li><a class="menu" href="{{item.url}}">{{item.title}}</a></li>
+                        <li><a class="menu" href="{{item.url}}">{{ item.title }}</a></li>
                       {% endif %}
                     {% endfor %}
                   {% else %}
                     {% for item in navbar_items %}
                       {% if item.anonymous_only %}
-                        <li><a class="menu" href="{{item.url}}">{{item.title}}</a></li>
+                        <li><a class="menu" href="{{item.url}}">{{ item.title }}</a></li>
                       {% endif %}
                     {% endfor %}
                   {% endif %}
@@ -43,13 +43,18 @@
       </div>
     </div>
   </div>
-  <div class="templatemo_headerimage">
-    <div class="flexslider">
-      <ul class="slides">
-        <li><img src="{% static "images/slider/1.jpg" %}" alt="Slide 1"></li>
-        <li><img src="{% static "images/slider/2.jpg" %}" alt="Slide 2"></li>
-      </ul>
+  <div class="templatemo_servicewrapper" id="templatemo_service_page">
+    <div class="container">
+      <div class="row">
+      </div>
     </div>
   </div>
+  <div class="templatemo_servicewrapper" id="templatemo_service_page">
+    <div class="container">
+      <div class="row">
+      </div>
+    </div>
+  </div>
+
 </div>
 
